@@ -85,3 +85,112 @@ Start the development server:
 php artisan serve
 ```
 
+
+## Usage
+Postman collection link: [Product Materials Calculation API](https://www.getpostman.com/collections/1
+# Materials Calculation API
+
+This API endpoint calculates the materials needed for various products based on the quantity of each product. It returns the materials required from various warehouses, including their quantity and price.
+
+## API Endpoint
+
+### `POST /api/calculate-materials`
+
+This endpoint calculates the materials required for the given products. You need to provide a list of products with their respective quantities.
+
+### Request Body
+
+The request should contain a JSON object with a `products` array. Each product in the array must include:
+- `id`: The unique identifier of the product.
+- `quantity`: The quantity of the product for which materials need to be calculated.
+
+#### Example Request:
+
+```json
+{
+    "products": [
+        {
+            "id": 1,
+            "quantity": 30
+        },
+        {
+            "id": 2,
+            "quantity": 20
+        }
+    ]
+}
+```
+Response
+```json
+{
+    "result": [
+        {
+            "product_name": "Koylak",
+            "product_qty": 30,
+            "product_materials": [
+                {
+                    "warehouse_id": 1,
+                    "material_name": "Mato",
+                    "qty": 12,
+                    "price": 1500
+                },
+                {
+                    "warehouse_id": 2,
+                    "material_name": "Mato",
+                    "qty": 12,
+                    "price": 1600
+                },
+                {
+                    "warehouse_id": 5,
+                    "material_name": "Tugma",
+                    "qty": 150,
+                    "price": 300
+                },
+                {
+                    "warehouse_id": 3,
+                    "material_name": "Ip",
+                    "qty": 40,
+                    "price": 500
+                },
+                {
+                    "warehouse_id": 4,
+                    "material_name": "Ip",
+                    "qty": 260,
+                    "price": 550
+                }
+            ]
+        },
+        {
+            "product_name": "Shim",
+            "product_qty": 20,
+            "product_materials": [
+                {
+                    "warehouse_id": 2,
+                    "material_name": "Mato",
+                    "qty": 28,
+                    "price": 1600
+                },
+                {
+                    "warehouse_id": 4,
+                    "material_name": "Ip",
+                    "qty": 40,
+                    "price": 550
+                },
+                {
+                    "warehouse_id": null,
+                    "material_name": "Ip",
+                    "qty": 260,
+                    "price": null
+                },
+                {
+                    "warehouse_id": 6,
+                    "material_name": "Zamok",
+                    "qty": 20,
+                    "price": 2000
+                }
+            ]
+        }
+    ]
+}
+
+```
