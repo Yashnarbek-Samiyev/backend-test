@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('material_id')->constrained('materials')->onDelete('cascade');
-            $table->integer('remainder', );
-            $table->integer('price',);
+            $table->decimal('remainder',10,2);
+            $table->decimal('price',10,2);
             $table->timestamps();
         });
     }
